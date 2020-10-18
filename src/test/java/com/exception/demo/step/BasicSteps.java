@@ -1,6 +1,7 @@
 package com.exception.demo.step;
 
 import com.exception.demo.action.SoutAction;
+import com.exception.demo.action.Tools;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,4 +34,9 @@ public class BasicSteps {
         messages.forEach(message -> soutAction.print(message));
     }
 
+    @When ("user verify if '{}' is odd and positive number")
+    public void userVerifyIfIsOddNumber(int numberToVerify) {
+        boolean numberIsOdd = Tools.isOddAndPositive(numberToVerify);
+        assertTrue(numberIsOdd, "Number is not odd or positive");
+    }
 }
