@@ -12,3 +12,6 @@ Feature: Exception Handling and how to debug
 
   Scenario: Invalid arguments
     When user see following messages
+
+  Scenario: Testing debug tools
+    Given user verify if '9' is odd and positive number
