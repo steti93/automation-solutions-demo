@@ -31,11 +31,7 @@ public class DifferenceThrowAndThrows {
     }
 
     @Test
-    public void catchException() {
-        try {
+    public void catchException() throws FileNotFoundException {
             ResourceUtils.getFile("classpath:data/invalidFile");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 }
