@@ -1,6 +1,6 @@
 package com.exception.demo.step;
 
-import com.exception.demo.action.SoutAction;
+import com.exception.demo.SoutAction;
 import com.exception.demo.action.Tools;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;

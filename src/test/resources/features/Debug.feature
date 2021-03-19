@@ -2,16 +2,20 @@ Feature: Exception Handling and how to debug
 
   Scenario: Assert failed
     Given user prints something
-    When and user validate following message "Correct message"
+    When and user validate following message "Holla amigos"
 
   Scenario: NPE
-    When and user validate following message "Correct message"
+    Given user prints something
+    When and user validate following message "Holla amigos"
 
   Scenario: Implemented step
-    When and user validate following message ffa
+    Given user prints something
+    When and user validate following message "Holla amigos"
 
   Scenario: Invalid arguments
     When user see following messages
+      | string 1 |
+      | string 2 |
 
   Scenario: Testing debug tools
-    Given user verify if '9' is odd and positive number
+    Given user verify if '10' is odd and positive number
