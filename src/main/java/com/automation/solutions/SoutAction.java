@@ -1,4 +1,4 @@
-package com.exception.demo;
+package com.automation.solutions;
 
 import org.springframework.stereotype.Component;
 

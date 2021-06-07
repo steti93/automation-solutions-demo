@@ -1,4 +1,4 @@
-package com.exception.demo;
+package com.automation.solutions;
 
 import lombok.extern.log4j.Log4j2;
 import org.aspectj.lang.ProceedingJoinPoint;

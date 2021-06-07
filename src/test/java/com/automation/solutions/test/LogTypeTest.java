@@ -1,4 +1,4 @@
-package com.exception.demo.test;
+package com.automation.solutions.test;
 
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -10,9 +10,9 @@ public class LogTypeTest {
 
     @Test
     public void typeOfLogging() {
-    log.error("Error type log");
-    log.debug("More informative granular type log");
-    log.warn("A Warning error message");
-    log.info("Test has passed with success!");
+        log.error("Error type log");
+        log.debug("More informative granular type log");
+        log.warn("A Warning error message");
+        log.info("Test has passed with success!");
     }
 }

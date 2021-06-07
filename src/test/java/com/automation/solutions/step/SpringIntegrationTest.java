@@ -1,6 +1,6 @@
-package com.exception.demo.step;
+package com.automation.solutions.step;
 
-import com.exception.demo.configuration.TestConfig;
+import com.automation.solutions.configuration.TestConfig;
 import io.cucumber.spring.CucumberContextConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
