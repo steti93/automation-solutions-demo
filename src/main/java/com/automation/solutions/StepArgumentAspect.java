@@ -1,18 +1,27 @@
 package com.automation.solutions;
 
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
+
+import java.util.Objects;
+import java.util.stream.Stream;
 
 @Aspect
 @Component
 @Log4j2
 public class StepArgumentAspect {
+
+    @Autowired
+    private Environment environment;
 
     @Pointcut("@annotation(io.cucumber.java.en.Given)")
     public void givenStepPointCut() {
@@ -43,11 +52,31 @@ public class StepArgumentAspect {
 
         StopWatch stopWatch = new StopWatch(className + "->" + methodName);
         stopWatch.start(methodName);
-        Object result = joinPoint.proceed();
         stopWatch.stop();
-
         log.info(stopWatch.shortSummary());
 
+        Stream methodArgs = Stream.of(joinPoint.getArgs());
+        Object[] updatedArgs = methodArgs.map(this::getValueBaseOnPattern).toArray();
+        log.info("Proper value from property is {}", updatedArgs);
+        return joinPoint.proceed(updatedArgs);
+    }
+
+    private Object getValueBaseOnPattern(Object objectArg) {
+        Object result = objectArg;
+        if (Objects.nonNull(objectArg)) {
+            if (objectArg instanceof String) {
+                String stringArg = (String) objectArg;
+                if (stringArg.matches("^env\\(.*\\)")) {
+                    result = getPropertyValue(StringUtils.substringBetween(stringArg, "\"", "\""));
+                }
+            }
+        }
         return result;
+    }
+
+    private Object getPropertyValue(final String param) {
+        if (Objects.nonNull(param)) {
+            return environment.getProperty(param);
+        } else throw new RuntimeException("Method parameter is null");
     }
 }

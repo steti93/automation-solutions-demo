@@ -5,12 +5,16 @@ import com.automation.solutions.action.Tools;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BasicSteps {
+
+    @Value("${data.users.userName}")
+    private String userNameValue;
 
     @Autowired
     private SoutAction soutAction;
@@ -22,6 +26,16 @@ public class BasicSteps {
         final String message = "Holla amigos";
         messageFromContext = message;
         soutAction.print(message);
+    }
+
+    @Given("following property is printed {}")
+    public void followingProperyIsPrinted(String property) {
+        soutAction.print(property);
+    }
+
+    @Given("^prints username$")
+    public void printUsername() {
+        soutAction.print(userNameValue);
     }
 
     @When("and user validate following message {string}")

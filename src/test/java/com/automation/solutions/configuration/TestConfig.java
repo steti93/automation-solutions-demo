@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Configuration
-@ComponentScan(basePackages = {"com.exception.demo"})
+@ComponentScan(basePackages = {"com.automation.solutions"})
 @EnableAspectJAutoProxy
 public class TestConfig {
 }
