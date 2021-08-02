@@ -13,9 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BasicSteps {
 
-    @Value("${data.users.userName}")
-    private String userNameValue;
-
     @Autowired
     private SoutAction soutAction;
 
@@ -31,11 +28,6 @@ public class BasicSteps {
     @Given("following property is printed {}")
     public void followingProperyIsPrinted(String property) {
         soutAction.print(property);
-    }
-
-    @Given("^prints username$")
-    public void printUsername() {
-        soutAction.print(userNameValue);
     }
 
     @When("and user validate following message {string}")
